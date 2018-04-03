@@ -32,7 +32,7 @@ namespace Mining_Priority
 
 		public override string SettingsCategory()
 		{
-			return "Mining Priority";
+			return "MiningPriority".Translate();
 		}
 	}
 }

@@ -21,8 +21,8 @@ namespace Mining_Priority
 			var options = new Listing_Standard();
 			options.Begin(wrect);
 
-			options.CheckboxLabeled("Restrict mining with yield to best miners", ref qualityMining, "Low skilled miners will not produce as much - Maximum at skill 8, but bad health can affect it");
-			options.CheckboxLabeled("Mine in order of value", ref priorityMining);
+			options.CheckboxLabeled("RestrictBest".Translate(), ref qualityMining, "RestrictBestDesc".Translate());
+			options.CheckboxLabeled("MineValue".Translate(), ref priorityMining);
 			options.Gap();
 
 			options.End();

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	
+	<MiningPriority>Mining Priority</MiningPriority>
+	<RestrictBest>Restrict mining with yield to best miners</RestrictBest>
+	<RestrictBestDesc>Low skilled miners will not produce as much - Maximum at skill 8, but bad health can affect it</RestrictBestDesc>
+	<MineValue>Mine in order of value</MineValue>
+	
+</LanguageData>
