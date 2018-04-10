@@ -16,7 +16,7 @@ namespace Mining_Priority
 		public Mod(ModContentPack content) : base(content)
 		{
 			// initialize settings
-			// GetSettings<Settings>();
+			GetSettings<Settings>();
 #if DEBUG
 			HarmonyInstance.DEBUG = true;
 #endif
