@@ -21,8 +21,8 @@ namespace Mining_Priority
 			var options = new Listing_Standard();
 			options.Begin(wrect);
 
-			options.CheckboxLabeled("RestrictBest".Translate(), ref qualityMining, "RestrictBestDesc".Translate());
-			options.CheckboxLabeled("MineValue".Translate(), ref priorityMining);
+			options.CheckboxLabeled("TD.RestrictBest".Translate(), ref qualityMining, "TD.RestrictBestDesc".Translate());
+			options.CheckboxLabeled("TD.MineValue".Translate(), ref priorityMining);
 			options.Gap();
 
 			options.End();

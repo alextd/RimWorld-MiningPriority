@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 	
-	<MiningPriority>Mining Priority</MiningPriority>
-	<RestrictBest>Restrict mining with yield to best miners</RestrictBest>
-	<RestrictBestDesc>Low skilled miners will not produce as much - Maximum at skill 8, but bad health can affect it</RestrictBestDesc>
-	<MineValue>Mine in order of value</MineValue>
+	<TD.MiningPriority>Mining Priority</TD.MiningPriority>
+	<TD.RestrictBest>Restrict mining with yield to best miners</TD.RestrictBest>
+	<TD.RestrictBestDesc>Low skilled miners will not produce as much - Maximum at skill 8, but bad health can affect it</TD.RestrictBestDesc>
+	<TD.MineValue>Mine in order of value</TD.MineValue>
 	
 </LanguageData>
