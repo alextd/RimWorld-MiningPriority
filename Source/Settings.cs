@@ -28,8 +28,8 @@ namespace Mining_Priority
 			options.CheckboxLabeled("TD.RestrictBest".Translate(), ref qualityMining, "TD.RestrictBestDesc".Translate());
 			if (qualityMining)
 			{
-				options.CheckboxLabeled("Ignore best miners that are busy with another job", ref qualityMiningIgnoreBusy, "Checks if your best miner is busy with other work, and allows the next best skilled miners to mine");
-				options.SliderLabeled("Include miners that are good enough", ref qualityGoodEnough, "{0:P0}", 0, 1, "For example, if your best miner has 80% yield, a setting of 75% would allow a miner with 60% yield.");
+				options.CheckboxLabeled("SettingIgnoreBusy".Translate(), ref qualityMiningIgnoreBusy, "SettingIgnoreBusyDesc".Translate());
+				options.SliderLabeled("SettingGoodEnough".Translate(), ref qualityGoodEnough, "{0:P0}", 0, 1, "SettingGoodEnoughDesc".Translate());
 			}
 			options.Gap();
 
