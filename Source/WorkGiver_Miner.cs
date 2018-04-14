@@ -54,8 +54,15 @@ namespace Mining_Priority
 		{
 			if (!Settings.Get().qualityMining) return;
 
-			float bestMiningYield = pawn.Map.mapPawns.FreeColonists.Select(p => p.GetStatValue(StatDefOf.MiningYield)).Max();
-			bool bestMiner = pawn.GetStatValue(StatDefOf.MiningYield) == bestMiningYield;
+			Func<Pawn, bool> validatePawn = p => p == pawn || (
+			  p.workSettings.WorkIsActive(WorkTypeDefOf.Mining)
+			  && (!Settings.Get().qualityMiningIgnoreBusy || p.CurJob.def == JobDefOf.Mine));
+
+			float bestMiningYield = pawn.Map.mapPawns.FreeColonists.Where(validatePawn).Select(p => p.GetStatValue(StatDefOf.MiningYield)).Max();
+
+			bestMiningYield *= Settings.Get().qualityGoodEnough;
+
+			bool bestMiner = pawn.GetStatValue(StatDefOf.MiningYield) >= bestMiningYield;
 			Log.Message(pawn + " is the " + (bestMiner ? "best miner!" : "worst"));
 			if (!bestMiner)
 			{

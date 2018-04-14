@@ -3,7 +3,7 @@
 	
 	<TD.MiningPriority>Mining Priority</TD.MiningPriority>
 	<TD.RestrictBest>Restrict mining with yield to best miners</TD.RestrictBest>
-	<TD.RestrictBestDesc>Because low skilled miners will not produce as much. Yield increases until skill 8, but bad health can affect it. Check their Mining Yield in their stats window. Only miners with the highest yield available will mine.</TD.RestrictBestDesc>
+	<TD.RestrictBestDesc>Because low skilled miners will not produce as much. Yield increases until skill 8, but bad health can affect it. Check their Mining Yield in their stats window.</TD.RestrictBestDesc>
 	<TD.MineValue>Mine in order of value</TD.MineValue>
 	
 </LanguageData>
