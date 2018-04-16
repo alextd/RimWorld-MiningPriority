@@ -28,8 +28,8 @@ namespace Mining_Priority
 			options.CheckboxLabeled("TD.RestrictBest".Translate(), ref qualityMining, "TD.RestrictBestDesc".Translate());
 			if (qualityMining)
 			{
-				options.CheckboxLabeled("SettingIgnoreBusy".Translate(), ref qualityMiningIgnoreBusy, "SettingIgnoreBusyDesc".Translate());
-				options.SliderLabeled("SettingGoodEnough".Translate(), ref qualityGoodEnough, "{0:P0}", 0, 1, "SettingGoodEnoughDesc".Translate());
+				options.CheckboxLabeled("TD.SettingIgnoreBusy".Translate(), ref qualityMiningIgnoreBusy, "TD.SettingIgnoreBusyDesc".Translate());
+				options.SliderLabeled("TD.SettingGoodEnough".Translate(), ref qualityGoodEnough, "{0:P0}", 0, 1, "TD.SettingGoodEnoughDesc".Translate());
 			}
 			options.Gap();
 
