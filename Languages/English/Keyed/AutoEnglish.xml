@@ -7,7 +7,7 @@
 	<TD.MineValue>Mine in order of value</TD.MineValue>
 	<TD.SettingIgnoreBusy>Ignore best miners that are busy with another job</TD.SettingIgnoreBusy>
 	<TD.SettingIgnoreBusyDesc>Checks if your best miner is busy with other work, and allows the next best skilled miners to mine</TD.SettingIgnoreBusyDesc>
-	<TD.SettingGoodEnough>Include miners that are good enough</TD.SettingGoodEnough>
-	<TD.SettingGoodEnoughDesc>For example, if your best miner has 80% yield, a setting of 75% would allow a miner with 60% yield.</TD.SettingGoodEnoughDesc>
+	<TD.SettingMinerGoodEnough>Include miners that are good enough</TD.SettingMinerGoodEnough>
+	<TD.SettingMinerGoodEnoughDesc>For example, if your best miner has 80% yield, a setting of 75% would allow a miner with 60% yield.</TD.SettingMinerGoodEnoughDesc>
 	
 </LanguageData>

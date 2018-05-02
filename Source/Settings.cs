@@ -29,7 +29,7 @@ namespace Mining_Priority
 			if (qualityMining)
 			{
 				options.CheckboxLabeled("TD.SettingIgnoreBusy".Translate(), ref qualityMiningIgnoreBusy, "TD.SettingIgnoreBusyDesc".Translate());
-				options.SliderLabeled("TD.SettingGoodEnough".Translate(), ref qualityGoodEnough, "{0:P0}", 0, 1, "TD.SettingGoodEnoughDesc".Translate());
+				options.SliderLabeled("TD.SettingMinerGoodEnough".Translate(), ref qualityGoodEnough, "{0:P0}", 0, 1, "TD.SettingMinerGoodEnoughDesc".Translate());
 			}
 			options.Gap();
 
