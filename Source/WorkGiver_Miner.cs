@@ -10,12 +10,13 @@ using UnityEngine;
 
 namespace Mining_Priority
 { 
+	// Would like to patch WorkGiver_Miner but there is no override so:
 	// ACTUALLY WorkGiver_Scanner
-	[HarmonyPatch(typeof(WorkGiver_Miner), "GetPriority", new Type[] { typeof(Pawn), typeof(TargetInfo) })]
+	[HarmonyPatch(typeof(WorkGiver_Scanner), "GetPriority", new Type[] { typeof(Pawn), typeof(TargetInfo) })]
 	//public virtual float GetPriority(Pawn pawn, TargetInfo t)
 	public static class WorkGiver_Miner_GetPriority_Patch
 	{
-		public static void Postfix(WorkGiver_Miner __instance, ref float __result, Pawn pawn, TargetInfo t)
+		public static void Postfix(WorkGiver_Scanner __instance, ref float __result, Pawn pawn, TargetInfo t)
 		{
 			if (!(__instance is WorkGiver_Miner) || !t.HasThing)
 				return;
@@ -32,11 +33,11 @@ namespace Mining_Priority
 
 	// ACTUALLY WorkGiver_Scanner
 	//public override bool Prioritized
-	[HarmonyPatch(typeof(WorkGiver_Miner))]
+	[HarmonyPatch(typeof(WorkGiver_Scanner))]
 	[HarmonyPatch("Prioritized", PropertyMethod.Getter)]
 	public static class WorkGiver_Miner_Prioritized_Patch
 	{
-		public static void Postfix(WorkGiver_Miner __instance, ref bool __result)
+		public static void Postfix(WorkGiver_Scanner __instance, ref bool __result)
 		{
 			if (__instance is WorkGiver_Miner)
 			{
