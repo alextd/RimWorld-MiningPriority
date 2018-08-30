@@ -25,15 +25,15 @@ namespace Mining_Priority
 			var options = new Listing_Standard();
 			options.Begin(wrect);
 
+			options.CheckboxLabeled("TD.MineValue".Translate(), ref priorityMining);
+			options.Gap();
+
 			options.CheckboxLabeled("TD.RestrictBest".Translate(), ref qualityMining, "TD.RestrictBestDesc".Translate());
 			if (qualityMining)
 			{
 				options.CheckboxLabeled("TD.SettingIgnoreBusy".Translate(), ref qualityMiningIgnoreBusy, "TD.SettingIgnoreBusyDesc".Translate());
 				options.SliderLabeled("TD.SettingMinerGoodEnough".Translate(), ref qualityGoodEnough, "{0:P0}", 0, 1, "TD.SettingMinerGoodEnoughDesc".Translate());
 			}
-			options.Gap();
-
-			options.CheckboxLabeled("TD.MineValue".Translate(), ref priorityMining);
 			options.Gap();
 
 			options.End();
