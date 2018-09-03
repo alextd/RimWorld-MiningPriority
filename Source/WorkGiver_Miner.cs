@@ -102,8 +102,8 @@ namespace Mining_Priority
 			if (!Settings.Get().qualityMining) return;
 
 			Func<Pawn, bool> validatePawn = p => p == pawn || (
-			  p.workSettings.WorkIsActive(WorkTypeDefOf.Mining)
-			  && (!Settings.Get().qualityMiningIgnoreBusy || p.CurJob.def == JobDefOf.Mine));
+			  (p.workSettings?.WorkIsActive(WorkTypeDefOf.Mining) ?? false)
+			  && (!Settings.Get().qualityMiningIgnoreBusy || p.CurJob?.def == JobDefOf.Mine));
 
 			float bestMiningYield = pawn.Map.mapPawns.FreeColonists.Where(validatePawn).Select(p => p.GetStatValue(StatDefOf.MiningYield)).Max();
 
