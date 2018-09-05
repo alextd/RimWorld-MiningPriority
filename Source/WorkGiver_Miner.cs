@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Verse;
+using Verse.AI;
 using Harmony;
 using RimWorld;
 using System.Reflection;
@@ -92,31 +93,32 @@ namespace Mining_Priority
 		}
 	}
 
-
-	//public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
-	[HarmonyPatch(typeof(WorkGiver_Miner), "PotentialWorkThingsGlobal")]
+	//public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
+	[HarmonyPatch(typeof(WorkGiver_Miner), "JobOnThing")]
 	public static class WorkGiver_Miner_Potential_Patch
 	{
-		public static void Postfix(WorkGiver_Miner __instance, Pawn pawn, ref IEnumerable<Thing> __result)
+		public static bool Prefix(ref Job __result, Pawn pawn, Thing t, bool forced = false)
 		{
-			if (!Settings.Get().qualityMining) return;
+			if (!Settings.Get().qualityMining || forced) return true;
 
 			Func<Pawn, bool> validatePawn = p => p == pawn || (
 			  (p.workSettings?.WorkIsActive(WorkTypeDefOf.Mining) ?? false)
 			  && (!Settings.Get().qualityMiningIgnoreBusy || p.CurJob?.def == JobDefOf.Mine));
 
+			//TODO: save value instead of computing each JobOnThing
 			float bestMiningYield = pawn.Map.mapPawns.FreeColonists.Where(validatePawn).Select(p => p.GetStatValue(StatDefOf.MiningYield)).Max();
 
 			bestMiningYield *= Settings.Get().qualityGoodEnough;
 
 			bool bestMiner = pawn.GetStatValue(StatDefOf.MiningYield) >= bestMiningYield;
-			Log.Message(pawn + " is the " + (bestMiner ? "best miner!" : "worst"));
-			if (!bestMiner)
+			Log.Message($"{pawn} is the best : {bestMiner}");
+			if (!bestMiner && (t.def.building?.mineableYieldWasteable ?? false))
 			{
-				Log.Message(" Results were " + __result.ToStringSafeEnumerable());
-				__result = __result.Where(t => !t.def.building?.mineableYieldWasteable ?? true);
-				Log.Message(" Results are " + __result.ToStringSafeEnumerable());
+				JobFailReason.Is("Not the best miner");
+				__result = null;
+				return false;
 			}
+			return true;
 		}
 	}
 }
