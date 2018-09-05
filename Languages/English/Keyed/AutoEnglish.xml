@@ -9,5 +9,7 @@
 	<TD.SettingIgnoreBusyDesc>Checks if your best miner is busy with other work, and allows the next best skilled miners to mine</TD.SettingIgnoreBusyDesc>
 	<TD.SettingMinerGoodEnough>Include miners that are good enough</TD.SettingMinerGoodEnough>
 	<TD.SettingMinerGoodEnoughDesc>For example, if your best miner has 80% yield, a setting of 75% would allow a miner with 60% yield.</TD.SettingMinerGoodEnoughDesc>
+	<TD.SettingPartialyMined>Prefer partially mined targets</TD.SettingPartialyMined>
+	<TD.JobFailReasonNotBestMiner>Not the best miner</TD.JobFailReasonNotBestMiner>
 	
 </LanguageData>

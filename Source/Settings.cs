@@ -27,7 +27,7 @@ namespace Mining_Priority
 			options.Begin(wrect);
 
 			options.CheckboxLabeled("TD.MineValue".Translate(), ref priorityMining);
-			options.CheckboxLabeled("Prefer partially mined targets", ref continueWork);
+			options.CheckboxLabeled("TD.SettingPartialyMined".Translate(), ref continueWork);
 			options.Gap();
 
 			options.CheckboxLabeled("TD.RestrictBest".Translate(), ref qualityMining, "TD.RestrictBestDesc".Translate());

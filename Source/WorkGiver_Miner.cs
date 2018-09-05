@@ -127,7 +127,7 @@ namespace Mining_Priority
 			Log.Message($"{pawn} is the best : {bestMiner}");
 			if (!bestMiner && (t.def.building?.mineableYieldWasteable ?? false))
 			{
-				JobFailReason.Is("Not the best miner");
+				JobFailReason.Is("TD.JobFailReasonNotBestMiner".Translate());
 				__result = null;
 				return false;
 			}
