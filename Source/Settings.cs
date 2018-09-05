@@ -13,6 +13,7 @@ namespace Mining_Priority
 		public bool qualityMiningIgnoreBusy = false;
 
 		public bool priorityMining = true;
+		public bool continueWork = true;
 		public float qualityGoodEnough = 1.0f;
 
 		public static Settings Get()
@@ -26,6 +27,7 @@ namespace Mining_Priority
 			options.Begin(wrect);
 
 			options.CheckboxLabeled("TD.MineValue".Translate(), ref priorityMining);
+			options.CheckboxLabeled("Prefer partially mined targets", ref continueWork);
 			options.Gap();
 
 			options.CheckboxLabeled("TD.RestrictBest".Translate(), ref qualityMining, "TD.RestrictBestDesc".Translate());
@@ -44,6 +46,7 @@ namespace Mining_Priority
 			Scribe_Values.Look(ref qualityMining, "qualityMining", true);
 			Scribe_Values.Look(ref qualityMiningIgnoreBusy, "qualityMiningIgnoreBusy", false);
 			Scribe_Values.Look(ref priorityMining, "priorityMining", true);
+			Scribe_Values.Look(ref continueWork, "continueWork", true);
 			Scribe_Values.Look(ref qualityGoodEnough, "priorityGoodEnough", 1.0f);
 		}
 	}

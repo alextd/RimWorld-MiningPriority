@@ -26,9 +26,22 @@ namespace Mining_Priority
 			BuildingProperties building = t.Thing.def.building;
 			if (building == null) return;
 
-			Log.Message(pawn + " mining " + t.Thing + " commonality " + building.mineableScatterCommonality + " size = " + building.mineableScatterLumpSizeRange.Average);
-			float p = building.mineableScatterCommonality + building.mineableScatterLumpSizeRange.Average / 10000f;
-			__result = building.mineableScatterCommonality == 0 ? float.MinValue : -p;
+			float p = 0.0f;
+			if (Settings.Get().priorityMining)
+			{
+				Log.Message(pawn + " mining " + t.Thing + " commonality " + building.mineableScatterCommonality + " size = " + building.mineableScatterLumpSizeRange.Average);
+				float valueP = building.mineableScatterCommonality + building.mineableScatterLumpSizeRange.Average / 10000f;
+
+				if (building.mineableScatterCommonality == 0) valueP = 5;//No commonality means very common really
+
+				p -= valueP;
+			}
+			if (Settings.Get().continueWork)
+			{
+				float damage = t.Thing.MaxHitPoints - t.Thing.HitPoints;
+				p += damage / 1000000f;
+			}
+			__result = p;
 			Log.Message("Miner priority for " + t.Thing + " is " + __result);
 		}
 	}
@@ -44,7 +57,7 @@ namespace Mining_Priority
 		{
 			if (__instance is WorkGiver_Miner)
 			{
-				__result |= Settings.Get().priorityMining;
+				__result |= Settings.Get().priorityMining || Settings.Get().continueWork;
 			}
 		}
 	}
@@ -87,7 +100,7 @@ namespace Mining_Priority
 		{
 			if (instance is WorkGiver_Miner)
 			{
-				result |= Settings.Get().priorityMining;
+				result |= Settings.Get().priorityMining || Settings.Get().continueWork;
 			}
 			return result;
 		}
