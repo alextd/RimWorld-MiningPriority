@@ -108,7 +108,7 @@ namespace Mining_Priority
 
 	//public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
 	[HarmonyPatch(typeof(WorkGiver_Miner), "JobOnThing")]
-	public static class WorkGiver_Miner_Potential_Patch
+	public static class WorkGiver_Miner_JobOnThing_Patch
 	{
 		public static bool Prefix(ref Job __result, Pawn pawn, Thing t, bool forced = false)
 		{
