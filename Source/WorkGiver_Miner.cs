@@ -119,7 +119,7 @@ namespace Mining_Priority
 			  && (!Settings.Get().qualityMiningIgnoreBusy || p.CurJob?.def == JobDefOf.Mine));
 
 			//TODO: save value instead of computing each JobOnThing
-			float bestMiningYield = pawn.Map.mapPawns.FreeColonists.Where(validatePawn).Select(p => p.GetStatValue(StatDefOf.MiningYield)).Max();
+			float bestMiningYield = pawn.Map.mapPawns.PawnsInFaction(Faction.OfPlayer).Where(validatePawn).Select(p => p.GetStatValue(StatDefOf.MiningYield)).Max();
 
 			bestMiningYield *= Settings.Get().qualityGoodEnough;
 
