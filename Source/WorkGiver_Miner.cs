@@ -29,7 +29,7 @@ namespace Mining_Priority
 			float p = 0.0f;
 			if (Settings.Get().priorityMining)
 			{
-				Log.Message(pawn + " mining " + t.Thing + " commonality " + building.mineableScatterCommonality + " size = " + building.mineableScatterLumpSizeRange.Average);
+				Log.Message("{pawn} mining {t.Thing} commonality {building.mineableScatterCommonality} size = {building.mineableScatterLumpSizeRange.Average}");
 				float valueP = building.mineableScatterCommonality + building.mineableScatterLumpSizeRange.Average / 10000f;
 
 				if (building.mineableScatterCommonality == 0) valueP = 5;//No commonality means very common really
@@ -42,7 +42,7 @@ namespace Mining_Priority
 				p += damage / 1000000f;
 			}
 			__result = p;
-			Log.Message("Miner priority for " + t.Thing + " is " + __result);
+			Log.Message($"Miner priority for {t.Thing} is {__result}");
 		}
 	}
 
