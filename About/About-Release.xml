@@ -2,7 +2,7 @@
 <ModMetaData>
 	<name>Mining Priority</name>
 	<author>Uuugggg</author>
-	<targetVersion>0.19.0</targetVersion>
+	<targetVersion>1.0.0</targetVersion>
 	<description>Mine valuable ores before tunneling through rock. Prioritizes mining to the rarest metal first.
 
 Only your best miners will dig for valuables (if lower skilled miners yield less)
