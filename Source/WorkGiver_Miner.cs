@@ -18,6 +18,14 @@ namespace Mining_Priority
 	//public virtual float GetPriority(Pawn pawn, TargetInfo t)
 	public static class WorkGiver_Miner_GetPriority_Patch
 	{
+		public static float Priority(float commonality, IntRange sizeRange)
+		{
+			if (Settings.Get().priorityMining)
+				return (commonality == 0) ? -5 : commonality + sizeRange.Average / 10000f;
+			else
+				return 0f;
+		}
+
 		public static void Postfix(WorkGiver_Scanner __instance, ref float __result, Pawn pawn, TargetInfo t)
 		{
 			if (!(__instance is WorkGiver_Miner) || !t.HasThing)
@@ -25,17 +33,9 @@ namespace Mining_Priority
 
 			BuildingProperties building = t.Thing.def.building;
 			if (building == null) return;
+			
+			float p = Priority(building.mineableScatterCommonality, building.mineableScatterLumpSizeRange);
 
-			float p = 0.0f;
-			if (Settings.Get().priorityMining)
-			{
-				Log.Message($"{pawn} mining {t.Thing} commonality {building.mineableScatterCommonality} size = {building.mineableScatterLumpSizeRange.Average}");
-				float valueP = building.mineableScatterCommonality + building.mineableScatterLumpSizeRange.Average / 10000f;
-
-				if (building.mineableScatterCommonality == 0) valueP = 5;//No commonality means very common really
-
-				p -= valueP;
-			}
 			if (Settings.Get().continueWork)
 			{
 				float damage = t.Thing.MaxHitPoints - t.Thing.HitPoints;
@@ -98,7 +98,7 @@ namespace Mining_Priority
 		
 		public static bool TranspilerPostfix(bool result, WorkGiver instance)
 		{
-			if (instance is WorkGiver_Miner)
+			if (instance is WorkGiver_Miner || instance is WorkGiver_DeepDrill)
 			{
 				result |= Settings.Get().priorityMining || Settings.Get().continueWork;
 			}
@@ -110,13 +110,11 @@ namespace Mining_Priority
 	[HarmonyPatch(typeof(WorkGiver_Miner), "JobOnThing")]
 	public static class WorkGiver_Miner_JobOnThing_Patch
 	{
-		public static bool Prefix(ref Job __result, Pawn pawn, Thing t, bool forced = false)
+		public static bool IsGoodMiner(Pawn pawn)
 		{
-			if (!Settings.Get().qualityMining || forced) return true;
-
 			Func<Pawn, bool> validatePawn = p => p == pawn || (
-			  (p.workSettings?.WorkIsActive(WorkTypeDefOf.Mining) ?? false)
-			  && (!Settings.Get().qualityMiningIgnoreBusy || p.CurJob?.def == JobDefOf.Mine));
+				(p.workSettings?.WorkIsActive(WorkTypeDefOf.Mining) ?? false)
+				&& (!Settings.Get().qualityMiningIgnoreBusy || p.CurJob?.def == JobDefOf.Mine || p.CurJob?.def == JobDefOf.OperateDeepDrill));
 
 			//TODO: save value instead of computing each JobOnThing
 			float bestMiningYield = pawn.Map.mapPawns.PawnsInFaction(Faction.OfPlayer).Where(validatePawn).Select(p => p.GetStatValue(StatDefOf.MiningYield)).Max();
@@ -125,9 +123,23 @@ namespace Mining_Priority
 
 			bool bestMiner = pawn.GetStatValue(StatDefOf.MiningYield) >= bestMiningYield;
 			Log.Message($"{pawn} is the best : {bestMiner}");
-			if (!bestMiner && (t.def.building?.mineableYieldWasteable ?? false))
+			if (!bestMiner)
 			{
 				JobFailReason.Is("TD.JobFailReasonNotBestMiner".Translate());
+				return false;
+			}
+			return true;
+		}
+
+		public static bool Prefix(ref Job __result, Pawn pawn, Thing t, bool forced = false)
+		{
+			if (!Settings.Get().qualityMining || forced) return true;
+
+			BuildingProperties building = t.def.building;
+			if (building == null || building.mineableYieldWasteable) return true;
+
+			if (!IsGoodMiner(pawn))
+			{
 				__result = null;
 				return false;
 			}
