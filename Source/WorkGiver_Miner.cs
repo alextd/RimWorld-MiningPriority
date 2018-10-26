@@ -141,7 +141,7 @@ namespace Mining_Priority
 			if (!Settings.Get().qualityMining || forced) return true;
 
 			BuildingProperties building = t.def.building;
-			if (building == null || building.mineableYieldWasteable) return true;
+			if (building == null || !building.mineableYieldWasteable) return true;
 
 			if (!IsGoodMiner(pawn))
 			{
