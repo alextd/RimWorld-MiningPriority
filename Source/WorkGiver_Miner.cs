@@ -11,7 +11,7 @@ using System.Reflection.Emit;
 using UnityEngine;
 
 namespace Mining_Priority
-{ 
+{
 	// Would like to patch WorkGiver_Miner but there is no override so:
 	// ACTUALLY WorkGiver_Scanner
 	[HarmonyPatch(typeof(WorkGiver_Scanner), "GetPriority", new Type[] { typeof(Pawn), typeof(TargetInfo) })]
@@ -33,7 +33,7 @@ namespace Mining_Priority
 
 			BuildingProperties building = t.Thing.def.building;
 			if (building == null) return;
-			
+
 			float p = Priority(building.mineableScatterCommonality, building.mineableScatterLumpSizeRange);
 
 			if (Settings.Get().continueWork)
@@ -41,6 +41,7 @@ namespace Mining_Priority
 				float damage = t.Thing.MaxHitPoints - t.Thing.HitPoints;
 				p += damage / 1000000f;
 			}
+
 			__result = p;
 			Log.Message($"Miner priority for {t.Thing} is {__result}");
 		}
@@ -82,7 +83,7 @@ namespace Mining_Priority
 			MethodInfo PrioritizedInfo = AccessTools.Property(typeof(WorkGiver_Scanner), nameof(WorkGiver_Scanner.Prioritized)).GetGetMethod();
 
 			MethodInfo PostfixInfo = AccessTools.Method(typeof(Prioritized_Patch), "TranspilerPostfix");
-			
+
 			int scannerIndex = mb.GetMethodBody().LocalVariables.Last(lv => lv.LocalType == typeof(WorkGiver)).LocalIndex;
 
 			foreach (CodeInstruction i in instructions)
@@ -95,7 +96,7 @@ namespace Mining_Priority
 				}
 			}
 		}
-		
+
 		public static bool TranspilerPostfix(bool result, WorkGiver instance)
 		{
 			if (instance is WorkGiver_Miner)
