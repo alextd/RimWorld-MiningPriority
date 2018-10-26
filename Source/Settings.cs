@@ -29,7 +29,7 @@ namespace Mining_Priority
 
 			options.CheckboxLabeled("TD.MineValue".Translate(), ref priorityMining);
 			options.CheckboxLabeled("TD.SettingPartialyMined".Translate(), ref continueWork);
-			options.CheckboxLabeled("Prefer deep drills that are nearer to exhaustion", ref finishUpDrills);
+			options.CheckboxLabeled("TD.SettingFinishUpDrills".Translate(), ref finishUpDrills);
 			options.Gap();
 
 			options.CheckboxLabeled("TD.RestrictBest".Translate(), ref qualityMining, "TD.RestrictBestDesc".Translate());

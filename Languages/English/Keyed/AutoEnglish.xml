@@ -11,5 +11,6 @@
 	<TD.SettingMinerGoodEnoughDesc>For example, if your best miner has 80% yield, a setting of 75% would allow a miner with 60% yield.</TD.SettingMinerGoodEnoughDesc>
 	<TD.SettingPartialyMined>Prefer partially mined targets</TD.SettingPartialyMined>
 	<TD.JobFailReasonNotBestMiner>Not the best miner</TD.JobFailReasonNotBestMiner>
+	<TD.SettingFinishUpDrills>Prefer deep drills that are nearer to exhaustion</TD.SettingFinishUpDrills>
 	
 </LanguageData>
