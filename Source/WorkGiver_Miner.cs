@@ -98,9 +98,13 @@ namespace Mining_Priority
 		
 		public static bool TranspilerPostfix(bool result, WorkGiver instance)
 		{
-			if (instance is WorkGiver_Miner || instance is WorkGiver_DeepDrill)
+			if (instance is WorkGiver_Miner)
 			{
-				result |= Settings.Get().priorityMining || Settings.Get().continueWork;
+				result |= Settings.Get().priorityMining;
+			}
+			if (instance is WorkGiver_DeepDrill)
+			{
+				result |= Settings.Get().continueWork;
 			}
 			return result;
 		}

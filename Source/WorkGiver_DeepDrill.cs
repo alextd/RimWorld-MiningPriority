@@ -23,16 +23,27 @@ namespace Mining_Priority
 			if (!(__instance is WorkGiver_DeepDrill) || !t.HasThing)
 				return;
 
-			ThingDef def = DeepDrillUtility.GetNextResource(t.Thing.Position, pawn.Map);
+			IntVec3 drillPos = t.Thing.Position;
+			Map map = pawn.Map;
+			ThingDef def = DeepDrillUtility.GetNextResource(drillPos, map);
 			if (def == null) return;
 			
 			float p = WorkGiver_Miner_GetPriority_Patch.Priority(def.deepCommonality, def.deepLumpSizeRange);
 			
-			if (Settings.Get().continueWork)
+			if (Settings.Get().finishUpDrills)
 			{
-				CompDeepDrill comp = t.Thing.TryGetComp<CompDeepDrill>();
-				
-				p += comp?.ProgressToNextPortionPercent / 10000f ?? 0;
+				int count = 0;
+				for (int i = 0; i < 9; i++)
+				{
+					IntVec3 deepPos = drillPos + GenRadial.RadialPattern[i];
+					if (deepPos.InBounds(map))
+					{
+						ThingDef thingDef = map.deepResourceGrid.ThingDefAt(deepPos);
+						if (thingDef != null)
+							count += map.deepResourceGrid.CountAt(deepPos);
+					}
+				}
+				p -= count / 1000000f;//Less is more!
 			}
 
 			__result = p;

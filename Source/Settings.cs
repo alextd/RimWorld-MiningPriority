@@ -14,6 +14,7 @@ namespace Mining_Priority
 
 		public bool priorityMining = true;
 		public bool continueWork = true;
+		public bool finishUpDrills = true;
 		public float qualityGoodEnough = 1.0f;
 
 		public static Settings Get()
@@ -28,6 +29,7 @@ namespace Mining_Priority
 
 			options.CheckboxLabeled("TD.MineValue".Translate(), ref priorityMining);
 			options.CheckboxLabeled("TD.SettingPartialyMined".Translate(), ref continueWork);
+			options.CheckboxLabeled("Prefer deep drills that are nearer to exhaustion", ref finishUpDrills);
 			options.Gap();
 
 			options.CheckboxLabeled("TD.RestrictBest".Translate(), ref qualityMining, "TD.RestrictBestDesc".Translate());
@@ -47,6 +49,7 @@ namespace Mining_Priority
 			Scribe_Values.Look(ref qualityMiningIgnoreBusy, "qualityMiningIgnoreBusy", false);
 			Scribe_Values.Look(ref priorityMining, "priorityMining", true);
 			Scribe_Values.Look(ref continueWork, "continueWork", true);
+			Scribe_Values.Look(ref finishUpDrills, "finishUpDrills", true);
 			Scribe_Values.Look(ref qualityGoodEnough, "priorityGoodEnough", 1.0f);
 		}
 	}
