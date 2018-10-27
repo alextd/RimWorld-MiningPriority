@@ -101,11 +101,11 @@ namespace Mining_Priority
 		{
 			if (instance is WorkGiver_Miner)
 			{
-				result |= Settings.Get().priorityMining;
+				result |= Settings.Get().priorityMining || Settings.Get().continueWork;
 			}
 			if (instance is WorkGiver_DeepDrill)
 			{
-				result |= Settings.Get().continueWork;
+				result |= Settings.Get().priorityMining || Settings.Get().finishUpDrills;
 			}
 			return result;
 		}
