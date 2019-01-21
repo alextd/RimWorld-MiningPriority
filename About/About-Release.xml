@@ -3,7 +3,7 @@
 	<name>Mining Priority</name>
 	<author>Uuugggg</author>
 	<supportedVersions>
-		<li>1.0.0</li>
+		<li>1.0</li>
 	</supportedVersions>
 	<description>Mine valuable ores before tunneling through rock. Prioritizes mining to the rarest metal first.
 
