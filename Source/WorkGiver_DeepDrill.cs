@@ -62,7 +62,7 @@ namespace Mining_Priority
 			CompDeepDrill comp = t.TryGetComp<CompDeepDrill>();
 			if (!comp?.ValuableResourcesPresent() ?? false) return true;
 
-			if (!WorkGiver_Miner_JobOnThing_Patch.IsGoodMiner(pawn))
+			if (!WorkGiver_Miner_JobOnThing_Patch.IsGoodMiner(pawn, typeof(WorkGiver_DeepDrill)))
 			{
 				__result = false;
 				return false;

@@ -115,11 +115,13 @@ namespace Mining_Priority
 	[HarmonyPatch(typeof(WorkGiver_Miner), "JobOnThing")]
 	public static class WorkGiver_Miner_JobOnThing_Patch
 	{
-		public static bool IsGoodMiner(Pawn pawn)
+		public static bool IsGoodMiner(Pawn pawn, Type workGiverType)
 		{
 			Func<Pawn, bool> validatePawn = p => p == pawn || (
-				(p.workSettings?.WorkIsActive(WorkTypeDefOf.Mining) ?? false)
-				&& (!Settings.Get().qualityMiningIgnoreBusy || p.CurJob?.def == JobDefOf.Mine || p.CurJob?.def == JobDefOf.OperateDeepDrill));
+				p.workSettings != null &&
+				p.workSettings.WorkIsActive(WorkTypeDefOf.Mining) &&
+				p.workSettings.WorkGiversInOrderNormal.Any(wg => wg.GetType() == workGiverType) &&
+				(!Settings.Get().qualityMiningIgnoreBusy || p.CurJob?.def == JobDefOf.Mine || p.CurJob?.def == JobDefOf.OperateDeepDrill));
 
 			//TODO: save value instead of computing each JobOnThing
 			float bestMiningYield = pawn.Map.mapPawns.PawnsInFaction(Faction.OfPlayer).Where(validatePawn).Select(p => p.GetStatValue(StatDefOf.MiningYield)).Max();
@@ -143,7 +145,7 @@ namespace Mining_Priority
 			BuildingProperties building = t.def.building;
 			if (building == null || !building.mineableYieldWasteable) return true;
 
-			if (!IsGoodMiner(pawn))
+			if (!IsGoodMiner(pawn, typeof(WorkGiver_Miner)))
 			{
 				__result = null;
 				return false;
