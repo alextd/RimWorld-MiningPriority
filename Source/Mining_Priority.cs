@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 using UnityEngine;
-using Harmony;
+using HarmonyLib;
 using Harmony.ILCopying;
 using RimWorld;
 
@@ -18,9 +18,9 @@ namespace Mining_Priority
 			// initialize settings
 			GetSettings<Settings>();
 #if DEBUG
-			HarmonyInstance.DEBUG = true;
+			Harmony.DEBUG = true;
 #endif
-			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.Mining_Priority.main");
+			Harmony harmony = new Harmony("Uuugggg.rimworld.Mining_Priority.main");
 			
 			//Turn off DefOf warning since harmony patches trigger it.
 			MethodInfo DefOfHelperInfo = AccessTools.Method(typeof(DefOfHelper), "EnsureInitializedInCtor");

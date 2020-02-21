@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Verse;
 using Verse.AI;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -89,7 +89,7 @@ namespace Mining_Priority
 			foreach (CodeInstruction i in instructions)
 			{
 				yield return i;
-				if (i.opcode == OpCodes.Callvirt && i.operand == PrioritizedInfo)
+				if (i.opcode == OpCodes.Callvirt && i.operand.Equals(PrioritizedInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Ldloc_S, scannerIndex);//WorkGiver
 					yield return new CodeInstruction(OpCodes.Call, PostfixInfo);
