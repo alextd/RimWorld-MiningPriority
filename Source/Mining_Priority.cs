@@ -6,7 +6,6 @@ using System.Text;
 using Verse;
 using UnityEngine;
 using HarmonyLib;
-using Harmony.ILCopying;
 using RimWorld;
 
 namespace Mining_Priority
