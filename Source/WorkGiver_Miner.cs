@@ -89,7 +89,7 @@ namespace Mining_Priority
 			foreach (CodeInstruction i in instructions)
 			{
 				yield return i;
-				if (i.opcode == OpCodes.Callvirt && i.operand.Equals(PrioritizedInfo))
+				if (i.Calls(PrioritizedInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Ldloc_S, scannerIndex);//WorkGiver
 					yield return new CodeInstruction(OpCodes.Call, PostfixInfo);
