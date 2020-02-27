@@ -21,7 +21,7 @@ namespace Mining_Priority
 		public static float Priority(float commonality, IntRange sizeRange)
 		{
 			if (Settings.Get().priorityMining)
-				return (commonality == 0) ? -5 : -commonality + sizeRange.Average / 10000f;
+				return (commonality == 0) ? -5 : -commonality - sizeRange.Average / 10000f;
 			else
 				return 0f;
 		}
