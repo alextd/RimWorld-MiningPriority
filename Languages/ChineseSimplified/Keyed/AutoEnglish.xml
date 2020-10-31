@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	
+	<TD.MiningPriority>Mining Priority</TD.MiningPriority>
+	<TD.RestrictBest>仅最高级矿工可开挖</TD.RestrictBest>
+	<TD.RestrictBestDesc>这是因为低级矿工的采矿产量并不高。采矿产量在挖矿技能8级后达到峰值，但矿工的身体状况也会对其造成影响。可在人物详情里查看殖民者的采矿产量。</TD.RestrictBestDesc>
+	<TD.MineValue>优先开挖高价矿石</TD.MineValue>
+	<TD.SettingIgnoreBusy>忽视忙于其他工作的最高级矿工</TD.SettingIgnoreBusy>
+	<TD.SettingIgnoreBusyDesc>当检测到最高级矿工正忙于其他工作时，由除他以外的最佳矿工开挖</TD.SettingIgnoreBusyDesc>
+	<TD.SettingMinerGoodEnough>包含矿工，当其采矿产量达到最高级矿工的</TD.SettingMinerGoodEnough>
+	<TD.SettingMinerGoodEnoughDesc>例如，最高级矿工的采矿产量为80%，此设置为75%，则允许采矿产量为60%的矿工进行开挖(80%*75%=60%)。</TD.SettingMinerGoodEnoughDesc>
+	<TD.SettingPartialyMined>优先选择已有开采进度的矿石</TD.SettingPartialyMined>
+	<TD.JobFailReasonNotBestMiner>不是最高级矿工</TD.JobFailReasonNotBestMiner>
+	<TD.SettingFinishUpDrills>深钻作业尽可能耗尽疲劳值</TD.SettingFinishUpDrills>
+	
+</LanguageData>
