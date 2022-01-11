@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	
+	<TD.MiningPriority>Bergbau Priorität</TD.MiningPriority>
+	<TD.RestrictBest>Beschränkung des Bergbaus mit Ertrag auf die besten Bergleute</TD.RestrictBest>
+	<TD.RestrictBestDesc>Gering qualifizierte Bergleute werden nicht so viel fördern. Die Erträge steigen bis zu Fertigkeit 8, aber schlechte Gesundheit kann sie beeinträchtigen. Überprüfen Sie die Erträge in ihrem Statistikfenster.</TD.RestrictBestDesc>
+	<TD.MineValue>Meiner in Reihenfolge des Wertes</TD.MineValue>
+	<TD.SettingIgnoreBusy>Ignoriert die besten Bergleute, die mit einem anderen Auftrag beschäftigt sind</TD.SettingIgnoreBusy>
+	<TD.SettingIgnoreBusyDesc>Prüft, ob der beste Bergmann mit anderen Aufgaben beschäftigt ist, und erlaubt den nächstbesten Bergleuten den Abbau</TD.SettingIgnoreBusyDesc>
+	<TD.SettingMinerGoodEnough>Bergleute einbeziehen, die gut genug sind</TD.SettingMinerGoodEnough>
+	<TD.SettingMinerGoodEnoughDesc>Wenn Ihr bester Bergmann beispielsweise eine Ausbeute von 80 % hat, würde eine Einstellung von 75 % einen Bergmann mit 60 % Ausbeute zulassen.</TD.SettingMinerGoodEnoughDesc>
+	<TD.SettingPartialyMined>Bevorzugt nur partiell reduzierte Flächen</TD.SettingPartialyMined>
+	<TD.JobFailReasonNotBestMiner>Nicht der beste Bergmann</TD.JobFailReasonNotBestMiner>
+	<TD.SettingFinishUpDrills>Bevorzugt tiefe Bohrungen, die näher vor der Erschöpfung stehen</TD.SettingFinishUpDrills>
+	
+</LanguageData>
