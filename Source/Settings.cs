@@ -7,7 +7,7 @@ using TD.Utilities;
 
 namespace Mining_Priority
 {
-	class Settings : ModSettings
+	public class Settings : ModSettings
 	{
 		public bool qualityMining = true;
 		public bool qualityMiningIgnoreBusy = false;
@@ -17,10 +17,6 @@ namespace Mining_Priority
 		public bool finishUpDrills = true;
 		public float qualityGoodEnough = 1.0f;
 
-		public static Settings Get()
-		{
-			return LoadedModManager.GetMod<Mining_Priority.Mod>().GetSettings<Settings>();
-		}
 
 		public void DoWindowContents(Rect wrect)
 		{

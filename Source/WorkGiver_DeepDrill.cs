@@ -30,7 +30,7 @@ namespace Mining_Priority
 			
 			float p = WorkGiver_Miner_GetPriority_Patch.Priority(def.deepCommonality, def.deepLumpSizeRange);
 			
-			if (Settings.Get().finishUpDrills)
+			if (Mod.settings.finishUpDrills)
 			{
 				int count = 0;
 				for (int i = 0; i < 9; i++)
@@ -57,7 +57,7 @@ namespace Mining_Priority
 		//public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)	{
 		public static bool Prefix(ref bool __result, Pawn pawn, Thing t, bool forced = false)
 		{
-			if (!Settings.Get().qualityMining || forced) return true;
+			if (!Mod.settings.qualityMining || forced) return true;
 
 			CompDeepDrill comp = t.TryGetComp<CompDeepDrill>();
 			if (!comp?.ValuableResourcesPresent() ?? false) return true;

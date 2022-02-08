@@ -20,7 +20,7 @@ namespace Mining_Priority
 	{
 		public static float Priority(float commonality, IntRange sizeRange)
 		{
-			if (Settings.Get().priorityMining)
+			if (Mod.settings.priorityMining)
 				return (commonality == 0) ? -5 : -commonality - sizeRange.Average / 10000f;
 			else
 				return 0f;
@@ -36,7 +36,7 @@ namespace Mining_Priority
 
 			float p = Priority(building.mineableScatterCommonality, building.mineableScatterLumpSizeRange);
 
-			if (Settings.Get().continueWork)
+			if (Mod.settings.continueWork)
 			{
 				float damage = t.Thing.MaxHitPoints - t.Thing.HitPoints;
 				p += damage / 1000000f;
@@ -58,7 +58,7 @@ namespace Mining_Priority
 		{
 			if (__instance is WorkGiver_Miner)
 			{
-				__result |= Settings.Get().priorityMining || Settings.Get().continueWork;
+				__result |= Mod.settings.priorityMining || Mod.settings.continueWork;
 			}
 		}
 	}
@@ -101,11 +101,11 @@ namespace Mining_Priority
 		{
 			if (instance is WorkGiver_Miner)
 			{
-				result |= Settings.Get().priorityMining || Settings.Get().continueWork;
+				result |= Mod.settings.priorityMining || Mod.settings.continueWork;
 			}
 			if (instance is WorkGiver_DeepDrill)
 			{
-				result |= Settings.Get().priorityMining || Settings.Get().finishUpDrills;
+				result |= Mod.settings.priorityMining || Mod.settings.finishUpDrills;
 			}
 			return result;
 		}
@@ -121,12 +121,12 @@ namespace Mining_Priority
 				p.workSettings != null &&
 				p.workSettings.WorkIsActive(WorkTypeDefOf.Mining) &&
 				p.workSettings.WorkGiversInOrderNormal.Any(wg => wg.GetType() == workGiverType) &&
-				(!Settings.Get().qualityMiningIgnoreBusy || p.CurJob?.def == JobDefOf.Mine || p.CurJob?.def == JobDefOf.OperateDeepDrill));
+				(!Mod.settings.qualityMiningIgnoreBusy || p.CurJob?.def == JobDefOf.Mine || p.CurJob?.def == JobDefOf.OperateDeepDrill));
 
 			//TODO: save value instead of computing each JobOnThing
 			float bestMiningYield = pawn.Map.mapPawns.PawnsInFaction(Faction.OfPlayer).Where(validatePawn).Select(p => p.GetStatValue(StatDefOf.MiningYield)).Max();
 
-			bestMiningYield *= Settings.Get().qualityGoodEnough;
+			bestMiningYield *= Mod.settings.qualityGoodEnough;
 
 			bool bestMiner = pawn.GetStatValue(StatDefOf.MiningYield) >= bestMiningYield;
 			Log.Message($"{pawn} is the best : {bestMiner}");
@@ -140,7 +140,7 @@ namespace Mining_Priority
 
 		public static bool Prefix(ref Job __result, Pawn pawn, Thing t, bool forced = false)
 		{
-			if (!Settings.Get().qualityMining || forced) return true;
+			if (!Mod.settings.qualityMining || forced) return true;
 
 			BuildingProperties building = t.def.building;
 			if (building == null || !building.mineableYieldWasteable) return true;
