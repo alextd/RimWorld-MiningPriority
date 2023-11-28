@@ -143,7 +143,7 @@ namespace Mining_Priority
 			if (!Mod.settings.qualityMining || forced) return true;
 
 			BuildingProperties building = t.def.building;
-			if (building == null || !building.mineableYieldWasteable) return true;
+			if (building == null || !building.mineableYieldWasteable || building.mineableThing == null) return true;
 
 			if (!IsGoodMiner(pawn, typeof(WorkGiver_Miner)))
 			{
